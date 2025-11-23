@@ -34,11 +34,6 @@ func (a Authorization) Secure(next http.Handler) func(w http.ResponseWriter, r *
 			return
 		}
 
-		if bearerParts[0] != "Bearer" {
-			http.Error(w, "invalid authorization header type", http.StatusUnauthorized)
-			return
-		}
-
 		if subtle.ConstantTimeCompare([]byte(a.token), []byte(bearerParts[1])) != 1 {
 			http.Error(w, "invalid authorization header", http.StatusUnauthorized)
 			slog.Warn("Authorization failed", slog.String("ip", r.RemoteAddr))

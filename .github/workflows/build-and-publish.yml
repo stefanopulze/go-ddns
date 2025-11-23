@@ -21,10 +21,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-#      - name: Set up Go
-#        uses: actions/setup-go@v4
-#      - name: Run Tests
-#        run: go test ./...
+      #      - name: Set up Go
+      #        uses: actions/setup-go@v4
+      #      - name: Run Tests
+      #        run: go test ./...
 
       - name: Log in to the Container registry
         if: github.event_name != 'pull_request'
@@ -39,6 +39,8 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          flavor: |
+            latest=auto
           tags: |
             type=ref,event=branch
             type=ref,event=pr
