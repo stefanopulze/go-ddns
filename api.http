@@ -1,0 +1,17 @@
+# @name Health
+# @no-log
+GET localhost:8080/health
+
+###
+# @name Update dns
+# @no-log
+GET localhost:8080/update?ip=147.53.207.161&hostname=vpn.pulze.cloud
+Authorization: Bearer bWFyaW86bWFyaW8=
+
+###
+# @name Cloudflare check token
+GET https://api.cloudflare.com/client/v4/user/tokens/verify
+Authorization: Bearer $cf_token
+
+#{"result":{"id":"6bdbf38b0f7ff81bbe3d9059a4d0f8ff","status":"active"},"success":true,"errors":[],"messages":[{"code":10000,"message":"This API Token is valid and active","type":null}]}%
+###
